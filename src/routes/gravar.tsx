@@ -19,11 +19,7 @@ const MAX_SECONDS = 180;
 
 const schema = z.object({
   name: z.string().trim().min(2, "Informe seu nome").max(100),
-  company: z.string().trim().max(120).optional().or(z.literal("")),
-  role: z.string().trim().max(80).optional().or(z.literal("")),
-  email: z.string().trim().email("E-mail inválido").max(160).optional().or(z.literal("")),
-  phone: z.string().trim().max(40).optional().or(z.literal("")),
-  message: z.string().trim().max(1000).optional().or(z.literal("")),
+  company: z.string().trim().min(2, "Informe a empresa").max(120),
 });
 
 type Phase = "idle" | "ready" | "recording" | "recorded" | "uploading" | "done" | "error";
@@ -52,7 +48,7 @@ function RecordPage() {
   const [blob, setBlob] = useState<Blob | null>(null);
   const [mime, setMime] = useState<string>("video/webm");
 
-  const [form, setForm] = useState({ name: "", company: "", role: "", email: "", phone: "", message: "" });
+  const [form, setForm] = useState({ name: "", company: "" });
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
