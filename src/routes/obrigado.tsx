@@ -18,7 +18,7 @@ function ThankYou() {
       <SiteHeader />
       <main className="flex-1 flex items-center justify-center px-6 py-20">
         <div className="max-w-xl text-center">
-          <div className="w-20 h-20 mx-auto rounded-2xl bg-[var(--gradient-orange)] flex items-center justify-center mb-8 shadow-[var(--shadow-orange)]">
+          <div className="w-20 h-20 mx-auto rounded-2xl bg-[image:var(--gradient-orange)] flex items-center justify-center mb-8 shadow-[var(--shadow-orange)]">
             <CheckCircle2 className="w-10 h-10 text-accent-foreground" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-4">Obrigado!</h1>

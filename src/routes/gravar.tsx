@@ -19,11 +19,7 @@ const MAX_SECONDS = 180;
 
 const schema = z.object({
   name: z.string().trim().min(2, "Informe seu nome").max(100),
-  company: z.string().trim().max(120).optional().or(z.literal("")),
-  role: z.string().trim().max(80).optional().or(z.literal("")),
-  email: z.string().trim().email("E-mail inválido").max(160).optional().or(z.literal("")),
-  phone: z.string().trim().max(40).optional().or(z.literal("")),
-  message: z.string().trim().max(1000).optional().or(z.literal("")),
+  company: z.string().trim().min(2, "Informe a empresa").max(120),
 });
 
 type Phase = "idle" | "ready" | "recording" | "recorded" | "uploading" | "done" | "error";
@@ -52,7 +48,7 @@ function RecordPage() {
   const [blob, setBlob] = useState<Blob | null>(null);
   const [mime, setMime] = useState<string>("video/webm");
 
-  const [form, setForm] = useState({ name: "", company: "", role: "", email: "", phone: "", message: "" });
+  const [form, setForm] = useState({ name: "", company: "" });
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
@@ -148,11 +144,7 @@ function RecordPage() {
 
       const { error: insErr } = await supabase.from("testimonials").insert({
         name: form.name.trim(),
-        company: form.company.trim() || null,
-        role: form.role.trim() || null,
-        email: form.email.trim() || null,
-        phone: form.phone.trim() || null,
-        message: form.message.trim() || null,
+        company: form.company.trim(),
         video_path: path,
         duration_seconds: seconds,
       });
@@ -249,31 +241,17 @@ function RecordPage() {
         {phase === "recorded" || phase === "uploading" || phase === "done" ? (
           <div className="mt-10 p-6 md:p-8 rounded-2xl border border-border bg-card">
             <h3 className="text-xl font-semibold text-foreground mb-1">Quase lá!</h3>
-            <p className="text-sm text-muted-foreground mb-6">Preencha seus dados para que possamos identificar seu depoimento.</p>
+            <p className="text-sm text-muted-foreground mb-6">Informe seu nome e empresa para enviarmos seu depoimento.</p>
             <div className="grid md:grid-cols-2 gap-4">
               <Field label="Nome completo *" name="name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} error={fieldErrors.name} />
-              <Field label="Empresa" name="company" value={form.company} onChange={(v) => setForm({ ...form, company: v })} error={fieldErrors.company} />
-              <Field label="Cargo" name="role" value={form.role} onChange={(v) => setForm({ ...form, role: v })} error={fieldErrors.role} />
-              <Field label="E-mail" name="email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} error={fieldErrors.email} />
-              <Field label="Telefone" name="phone" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} error={fieldErrors.phone} />
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-foreground mb-1.5">Mensagem (opcional)</label>
-                <textarea
-                  value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  rows={3}
-                  maxLength={1000}
-                  className="w-full px-4 py-2.5 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring/40 focus:border-accent transition"
-                  placeholder="Algo que queira complementar por escrito..."
-                />
-              </div>
+              <Field label="Empresa *" name="company" value={form.company} onChange={(v) => setForm({ ...form, company: v })} error={fieldErrors.company} />
             </div>
 
             <div className="mt-6 flex flex-wrap items-center justify-end gap-3">
               <button
                 onClick={submit}
                 disabled={phase !== "recorded"}
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[var(--gradient-orange)] text-accent-foreground font-semibold hover:opacity-90 transition-opacity shadow-[var(--shadow-orange)] disabled:opacity-60 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[image:var(--gradient-orange)] text-accent-foreground font-semibold hover:opacity-90 transition-opacity shadow-[var(--shadow-orange)] disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {phase === "uploading" ? (<><Loader2 className="w-4 h-4 animate-spin" /> Enviando...</>) :
                  phase === "done" ? (<><CheckCircle2 className="w-4 h-4" /> Enviado!</>) :

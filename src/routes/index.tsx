@@ -70,7 +70,7 @@ function Home() {
           ].map((s) => (
             <div key={s.n} className="group relative p-8 rounded-2xl bg-card border border-border hover:border-accent/40 hover:shadow-[var(--shadow-soft)] transition-all">
               <div className="text-7xl font-bold text-secondary leading-none mb-4 group-hover:text-accent/15 transition-colors">{s.n}</div>
-              <div className="w-12 h-12 rounded-xl bg-[var(--gradient-orange)] flex items-center justify-center mb-5 shadow-[var(--shadow-orange)]">
+              <div className="w-12 h-12 rounded-xl bg-[image:var(--gradient-orange)] flex items-center justify-center mb-5 shadow-[var(--shadow-orange)]">
                 <s.icon className="w-6 h-6 text-accent-foreground" />
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-2">{s.t}</h3>
@@ -111,7 +111,7 @@ function Home() {
         </p>
         <Link
           to="/gravar"
-          className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-[var(--gradient-orange)] text-accent-foreground font-semibold hover:opacity-90 transition-all shadow-[var(--shadow-orange)] hover:-translate-y-0.5"
+          className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-[image:var(--gradient-orange)] text-accent-foreground font-semibold hover:opacity-90 transition-all shadow-[var(--shadow-orange)] hover:-translate-y-0.5"
         >
           <Video className="w-5 h-5" />
           Começar agora
