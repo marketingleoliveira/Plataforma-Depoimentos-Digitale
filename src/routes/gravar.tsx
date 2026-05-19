@@ -273,7 +273,7 @@ function RecordPage() {
               <button
                 onClick={submit}
                 disabled={phase !== "recorded"}
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[var(--gradient-orange)] text-accent-foreground font-semibold hover:opacity-90 transition-opacity shadow-[var(--shadow-orange)] disabled:opacity-60 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[image:var(--gradient-orange)] text-accent-foreground font-semibold hover:opacity-90 transition-opacity shadow-[var(--shadow-orange)] disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {phase === "uploading" ? (<><Loader2 className="w-4 h-4 animate-spin" /> Enviando...</>) :
                  phase === "done" ? (<><CheckCircle2 className="w-4 h-4" /> Enviado!</>) :
