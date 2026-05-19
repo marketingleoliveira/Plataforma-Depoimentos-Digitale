@@ -19,21 +19,21 @@ function Home() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[var(--gradient-hero)]" />
-        <div className="absolute inset-0 opacity-[0.08]" style={{
-          backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary/60 via-background to-background" />
+        <div className="absolute inset-0 opacity-[0.06]" style={{
+          backgroundImage: "radial-gradient(circle at 1px 1px, var(--navy) 1px, transparent 0)",
           backgroundSize: "32px 32px",
         }} />
-        <div className="relative max-w-6xl mx-auto px-6 py-24 md:py-32 text-primary-foreground">
+        <div className="relative max-w-6xl mx-auto px-6 py-24 md:py-32 text-foreground">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/15 text-xs uppercase tracking-[0.25em] font-semibold mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/15 text-primary text-xs uppercase tracking-[0.25em] font-semibold mb-8">
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
               Para clientes Digitale Têxtil
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6 text-balance">
               Conte sua experiência<br />em <span className="text-accent">poucos minutos</span>.
             </h1>
-            <p className="text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed mb-10">
+            <p className="text-lg md:text-xl text-foreground/75 max-w-2xl leading-relaxed mb-10">
               Grave um depoimento em vídeo direto do seu navegador — sem app, sem cadastro,
               sem complicação. É rápido, prático e nos ajuda demais a continuar evoluindo.
             </p>
@@ -47,7 +47,7 @@ function Home() {
               </Link>
               <a
                 href="#como-funciona"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-white/25 text-white font-semibold hover:bg-white/10 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-primary/20 text-foreground font-semibold hover:bg-primary/5 transition-colors"
               >
                 Como funciona
               </a>

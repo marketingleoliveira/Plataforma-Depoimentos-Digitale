@@ -191,14 +191,14 @@ function RecordPage() {
         )}
 
         {/* Video stage */}
-        <div className="relative rounded-2xl overflow-hidden bg-[var(--gradient-navy)] aspect-video shadow-[var(--shadow-soft)]">
+        <div className="relative rounded-2xl overflow-hidden bg-secondary aspect-video shadow-[var(--shadow-soft)] border border-border">
           {phase === "idle" || phase === "error" ? (
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-primary-foreground text-center px-6">
-              <div className="w-20 h-20 rounded-2xl bg-white/10 backdrop-blur flex items-center justify-center mb-5">
-                <Video className="w-10 h-10" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-foreground text-center px-6">
+              <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-5">
+                <Video className="w-10 h-10 text-primary" />
               </div>
               <h3 className="text-2xl font-semibold mb-2">Pronto para começar?</h3>
-              <p className="text-white/70 mb-6 max-w-sm">Vamos pedir acesso à sua câmera e microfone.</p>
+              <p className="text-foreground/70 mb-6 max-w-sm">Vamos pedir acesso à sua câmera e microfone.</p>
               <button onClick={requestCamera} className="px-8 py-3 rounded-full bg-accent text-accent-foreground font-semibold hover:opacity-90 transition-opacity shadow-[var(--shadow-orange)]">
                 Liberar câmera
               </button>
