@@ -76,10 +76,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Grave seu depoimento em vídeo para a Digitale Têxtil de forma rápida e prática, direto pelo navegador." },
       { name: "author", content: "Digitale Têxtil" },
       { property: "og:title", content: "Depoimentos Digitale Têxtil" },
-      { property: "og:description", content: "Grave seu depoimento em vídeo em poucos minutos." },
+      { property: "og:description", content: "Grave seu depoimento em vídeo para a Digitale Têxtil de forma rápida e prática, direto pelo navegador." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Depoimentos Digitale Têxtil" },
+      { name: "twitter:description", content: "Grave seu depoimento em vídeo para a Digitale Têxtil de forma rápida e prática, direto pelo navegador." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b6ddd398-573a-4f34-b272-9337c7c77ecc/id-preview-da013e76--486a23f1-0cdb-406e-b46c-ad4337d5c11b.lovable.app-1779193526493.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b6ddd398-573a-4f34-b272-9337c7c77ecc/id-preview-da013e76--486a23f1-0cdb-406e-b46c-ad4337d5c11b.lovable.app-1779193526493.png" },
     ],
     links: [
       {
