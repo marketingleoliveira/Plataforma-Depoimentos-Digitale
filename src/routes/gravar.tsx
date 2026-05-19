@@ -144,11 +144,7 @@ function RecordPage() {
 
       const { error: insErr } = await supabase.from("testimonials").insert({
         name: form.name.trim(),
-        company: form.company.trim() || null,
-        role: form.role.trim() || null,
-        email: form.email.trim() || null,
-        phone: form.phone.trim() || null,
-        message: form.message.trim() || null,
+        company: form.company.trim(),
         video_path: path,
         duration_seconds: seconds,
       });
@@ -245,24 +241,10 @@ function RecordPage() {
         {phase === "recorded" || phase === "uploading" || phase === "done" ? (
           <div className="mt-10 p-6 md:p-8 rounded-2xl border border-border bg-card">
             <h3 className="text-xl font-semibold text-foreground mb-1">Quase lá!</h3>
-            <p className="text-sm text-muted-foreground mb-6">Preencha seus dados para que possamos identificar seu depoimento.</p>
+            <p className="text-sm text-muted-foreground mb-6">Informe seu nome e empresa para enviarmos seu depoimento.</p>
             <div className="grid md:grid-cols-2 gap-4">
               <Field label="Nome completo *" name="name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} error={fieldErrors.name} />
-              <Field label="Empresa" name="company" value={form.company} onChange={(v) => setForm({ ...form, company: v })} error={fieldErrors.company} />
-              <Field label="Cargo" name="role" value={form.role} onChange={(v) => setForm({ ...form, role: v })} error={fieldErrors.role} />
-              <Field label="E-mail" name="email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} error={fieldErrors.email} />
-              <Field label="Telefone" name="phone" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} error={fieldErrors.phone} />
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-foreground mb-1.5">Mensagem (opcional)</label>
-                <textarea
-                  value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  rows={3}
-                  maxLength={1000}
-                  className="w-full px-4 py-2.5 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring/40 focus:border-accent transition"
-                  placeholder="Algo que queira complementar por escrito..."
-                />
-              </div>
+              <Field label="Empresa *" name="company" value={form.company} onChange={(v) => setForm({ ...form, company: v })} error={fieldErrors.company} />
             </div>
 
             <div className="mt-6 flex flex-wrap items-center justify-end gap-3">
