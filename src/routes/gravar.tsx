@@ -60,6 +60,16 @@ function RecordPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Anexa o stream ao <video> sempre que ele estiver montado (ready/recording)
+  useEffect(() => {
+    if ((phase === "ready" || phase === "recording") && liveVideoRef.current && streamRef.current) {
+      if (liveVideoRef.current.srcObject !== streamRef.current) {
+        liveVideoRef.current.srcObject = streamRef.current;
+      }
+      liveVideoRef.current.play().catch(() => {});
+    }
+  }, [phase]);
+
   async function requestCamera() {
     setErrorMsg(null);
     try {
@@ -68,10 +78,6 @@ function RecordPage() {
         audio: true,
       });
       streamRef.current = stream;
-      if (liveVideoRef.current) {
-        liveVideoRef.current.srcObject = stream;
-        await liveVideoRef.current.play().catch(() => {});
-      }
       setPhase("ready");
     } catch (e) {
       console.error(e);
