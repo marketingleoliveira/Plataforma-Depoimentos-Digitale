@@ -6,7 +6,7 @@ export const Route = createFileRoute("/obrigado")({
   head: () => ({
     meta: [
       { title: "Obrigado! — Digitale Têxtil" },
-      { name: "description", content: "Seu depoimento foi enviado com sucesso." },
+      { name: "description", content: "Seu vídeo de parceria foi enviado com sucesso." },
     ],
   }),
   component: ThankYou,
@@ -23,8 +23,8 @@ function ThankYou() {
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-4">Obrigado!</h1>
           <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
-            Recebemos seu depoimento com sucesso. Sua contribuição é muito importante
-            para a Digitale Têxtil. A nossa equipe vai assistir em breve.
+            Recebemos seu vídeo de parceria com sucesso. Obrigado por fortalecer
+            essa parceria com a Digitale Têxtil — nossa equipe vai assistir em breve.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link to="/" className="px-8 py-3.5 rounded-full border border-border text-foreground font-medium hover:bg-secondary transition-colors">
