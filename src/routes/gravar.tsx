@@ -8,8 +8,8 @@ import { z } from "zod";
 export const Route = createFileRoute("/gravar")({
   head: () => ({
     meta: [
-      { title: "Gravar depoimento — Digitale Têxtil" },
-      { name: "description", content: "Grave seu depoimento em vídeo direto pelo navegador." },
+      { title: "Enviar Vídeo de Parceria — Digitale Têxtil" },
+      { name: "description", content: "Grave e envie seu vídeo de parceria direto pelo navegador." },
     ],
   }),
   component: RecordPage,
@@ -174,10 +174,10 @@ function RecordPage() {
       <SiteHeader />
       <main className="flex-1 max-w-5xl w-full mx-auto px-6 py-10 md:py-14">
         <div className="text-center mb-10">
-          <div className="text-xs uppercase tracking-[0.25em] text-accent font-semibold mb-3">Sua opinião importa</div>
-          <h1 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight">Grave seu depoimento</h1>
+          <div className="text-xs uppercase tracking-[0.25em] text-accent font-semibold mb-3">Parceria Digitale Têxtil</div>
+          <h1 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight">Enviar Vídeo de Parceria</h1>
           <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
-            Até {MAX_SECONDS / 60} minutos. Conte como tem sido sua experiência com a Digitale Têxtil.
+            Até {MAX_SECONDS / 60} minutos. Conte como tem sido nossa parceria.
           </p>
         </div>
 
@@ -195,7 +195,7 @@ function RecordPage() {
               <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-5">
                 <Video className="w-10 h-10 text-primary" />
               </div>
-              <h3 className="text-2xl font-semibold mb-2">Pronto para começar?</h3>
+              <h3 className="text-2xl font-semibold mb-2">Pronto para gravar?</h3>
               <p className="text-foreground/70 mb-6 max-w-sm">Vamos pedir acesso à sua câmera e microfone.</p>
               <button onClick={requestCamera} className="px-8 py-3 rounded-full bg-accent text-accent-foreground font-semibold hover:opacity-90 transition-opacity shadow-[var(--shadow-orange)]">
                 Liberar câmera
@@ -247,7 +247,7 @@ function RecordPage() {
         {phase === "recorded" || phase === "uploading" || phase === "done" ? (
           <div className="mt-10 p-6 md:p-8 rounded-2xl border border-border bg-card">
             <h3 className="text-xl font-semibold text-foreground mb-1">Quase lá!</h3>
-            <p className="text-sm text-muted-foreground mb-6">Informe seu nome e empresa para enviarmos seu depoimento.</p>
+            <p className="text-sm text-muted-foreground mb-6">Informe seu nome e empresa para enviarmos seu vídeo de parceria.</p>
             <div className="grid md:grid-cols-2 gap-4">
               <Field label="Nome completo *" name="name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} error={fieldErrors.name} />
               <Field label="Empresa *" name="company" value={form.company} onChange={(v) => setForm({ ...form, company: v })} error={fieldErrors.company} />
@@ -261,7 +261,7 @@ function RecordPage() {
               >
                 {phase === "uploading" ? (<><Loader2 className="w-4 h-4 animate-spin" /> Enviando...</>) :
                  phase === "done" ? (<><CheckCircle2 className="w-4 h-4" /> Enviado!</>) :
-                 (<><Send className="w-4 h-4" /> Enviar depoimento</>)}
+                 (<><Send className="w-4 h-4" /> Enviar Vídeo de Parceria</>)}
               </button>
             </div>
           </div>
