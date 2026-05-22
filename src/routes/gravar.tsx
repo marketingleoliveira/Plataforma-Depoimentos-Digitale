@@ -225,6 +225,11 @@ function RecordPage() {
               Pré-visualização
             </div>
           )}
+          {(phase === "recorded" || phase === "uploading" || phase === "done") && (
+            <div className="absolute top-3 left-3 sm:top-4 sm:left-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur text-white text-[10px] sm:text-xs uppercase tracking-wider">
+              Revisão • {mm}:{ss}
+            </div>
+          )}
         </div>
 
         {/* Controls */}
