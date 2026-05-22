@@ -202,7 +202,15 @@ function RecordPage() {
               </button>
             </div>
           ) : phase === "recorded" || phase === "uploading" || phase === "done" ? (
-            <video ref={playbackRef} src={blobUrl ?? undefined} controls className="absolute inset-0 w-full h-full object-cover bg-black" />
+            <video
+              ref={playbackRef}
+              src={blobUrl ?? undefined}
+              controls
+              controlsList="nodownload"
+              playsInline
+              preload="metadata"
+              className="absolute inset-0 w-full h-full object-contain bg-black"
+            />
           ) : (
             <video ref={liveVideoRef} autoPlay muted playsInline className="absolute inset-0 w-full h-full object-cover bg-black" />
           )}
