@@ -98,6 +98,11 @@ function RecordPage() {
       setBlob(b);
       const url = URL.createObjectURL(b);
       setBlobUrl(url);
+      // Libera o elemento de vídeo do stream ao vivo para que o playback use o blob
+      if (liveVideoRef.current) {
+        try { liveVideoRef.current.pause(); } catch {}
+        liveVideoRef.current.srcObject = null;
+      }
       setPhase("recorded");
     };
     recorderRef.current = rec;
@@ -203,6 +208,7 @@ function RecordPage() {
             </div>
           ) : phase === "recorded" || phase === "uploading" || phase === "done" ? (
             <video
+              key="playback"
               ref={playbackRef}
               src={blobUrl ?? undefined}
               controls
@@ -212,7 +218,7 @@ function RecordPage() {
               className="absolute inset-0 w-full h-full object-contain bg-black"
             />
           ) : (
-            <video ref={liveVideoRef} autoPlay muted playsInline className="absolute inset-0 w-full h-full object-cover bg-black" />
+            <video key="live" ref={liveVideoRef} autoPlay muted playsInline className="absolute inset-0 w-full h-full object-cover bg-black" />
           )}
 
           {phase === "recording" && (
