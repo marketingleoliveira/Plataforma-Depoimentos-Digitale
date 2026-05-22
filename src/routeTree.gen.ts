@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ObrigadoRouteImport } from './routes/obrigado'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as GravarRouteImport } from './routes/gravar'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -23,11 +22,6 @@ const ObrigadoRoute = ObrigadoRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GravarRoute = GravarRouteImport.update({
-  id: '/gravar',
-  path: '/gravar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -44,14 +38,12 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/gravar': typeof GravarRoute
   '/login': typeof LoginRoute
   '/obrigado': typeof ObrigadoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/gravar': typeof GravarRoute
   '/login': typeof LoginRoute
   '/obrigado': typeof ObrigadoRoute
 }
@@ -59,22 +51,20 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/gravar': typeof GravarRoute
   '/login': typeof LoginRoute
   '/obrigado': typeof ObrigadoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/gravar' | '/login' | '/obrigado'
+  fullPaths: '/' | '/admin' | '/login' | '/obrigado'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/gravar' | '/login' | '/obrigado'
-  id: '__root__' | '/' | '/admin' | '/gravar' | '/login' | '/obrigado'
+  to: '/' | '/admin' | '/login' | '/obrigado'
+  id: '__root__' | '/' | '/admin' | '/login' | '/obrigado'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
-  GravarRoute: typeof GravarRoute
   LoginRoute: typeof LoginRoute
   ObrigadoRoute: typeof ObrigadoRoute
 }
@@ -93,13 +83,6 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gravar': {
-      id: '/gravar'
-      path: '/gravar'
-      fullPath: '/gravar'
-      preLoaderRoute: typeof GravarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -122,7 +105,6 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
-  GravarRoute: GravarRoute,
   LoginRoute: LoginRoute,
   ObrigadoRoute: ObrigadoRoute,
 }
