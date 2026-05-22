@@ -241,7 +241,21 @@ function RecordPage() {
           )}
           {phase === "recorded" && (
             <>
-              <button onClick={discardAndRetry} className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-border text-foreground font-medium hover:bg-secondary transition-colors">
+              <button
+                onClick={() => {
+                  const v = playbackRef.current;
+                  if (!v) return;
+                  v.currentTime = 0;
+                  v.play().catch(() => {});
+                }}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-accent text-accent-foreground font-semibold text-base hover:opacity-90 transition-opacity shadow-[var(--shadow-orange)]"
+              >
+                <Video className="w-4 h-4" /> Reassistir ({mm}:{ss})
+              </button>
+              <button
+                onClick={discardAndRetry}
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full border border-border text-foreground font-medium text-base hover:bg-secondary transition-colors"
+              >
                 <RotateCcw className="w-4 h-4" /> Regravar
               </button>
             </>
