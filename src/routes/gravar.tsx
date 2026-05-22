@@ -202,7 +202,15 @@ function RecordPage() {
               </button>
             </div>
           ) : phase === "recorded" || phase === "uploading" || phase === "done" ? (
-            <video ref={playbackRef} src={blobUrl ?? undefined} controls className="absolute inset-0 w-full h-full object-cover bg-black" />
+            <video
+              ref={playbackRef}
+              src={blobUrl ?? undefined}
+              controls
+              controlsList="nodownload"
+              playsInline
+              preload="metadata"
+              className="absolute inset-0 w-full h-full object-contain bg-black"
+            />
           ) : (
             <video ref={liveVideoRef} autoPlay muted playsInline className="absolute inset-0 w-full h-full object-cover bg-black" />
           )}
@@ -215,6 +223,11 @@ function RecordPage() {
           {phase === "ready" && (
             <div className="absolute top-3 left-3 sm:top-4 sm:left-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur text-white text-[10px] sm:text-xs uppercase tracking-wider">
               Pré-visualização
+            </div>
+          )}
+          {(phase === "recorded" || phase === "uploading" || phase === "done") && (
+            <div className="absolute top-3 left-3 sm:top-4 sm:left-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur text-white text-[10px] sm:text-xs uppercase tracking-wider">
+              Revisão • {mm}:{ss}
             </div>
           )}
         </div>
@@ -233,7 +246,21 @@ function RecordPage() {
           )}
           {phase === "recorded" && (
             <>
-              <button onClick={discardAndRetry} className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-border text-foreground font-medium hover:bg-secondary transition-colors">
+              <button
+                onClick={() => {
+                  const v = playbackRef.current;
+                  if (!v) return;
+                  v.currentTime = 0;
+                  v.play().catch(() => {});
+                }}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-accent text-accent-foreground font-semibold text-base hover:opacity-90 transition-opacity shadow-[var(--shadow-orange)]"
+              >
+                <Video className="w-4 h-4" /> Reassistir ({mm}:{ss})
+              </button>
+              <button
+                onClick={discardAndRetry}
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full border border-border text-foreground font-medium text-base hover:bg-secondary transition-colors"
+              >
                 <RotateCcw className="w-4 h-4" /> Regravar
               </button>
             </>
